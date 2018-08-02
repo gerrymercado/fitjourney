@@ -1,0 +1,1 @@
+json.partial! @report, partial: "report", as: :report

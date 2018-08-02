@@ -1,0 +1,1 @@
+json.partial! @meal, partial: 'meal', as: :meal
