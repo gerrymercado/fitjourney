@@ -7,18 +7,7 @@ var HomePage = {
       message: "Welcome to FitJourney!"
     };
   },
-  created: function() {
-    /* <![CDATA[ */
-      $(window).load(function() {
-      $('.flexslider').flexslider({
-        animation: "fade"
-      });
-    });
-      /* ]]> */
-  },
-  methods: {
-
-  },
+  methods: {},
   computed: {}
 };
 
@@ -197,7 +186,8 @@ var MealIndex = {
   template: "#meal-card",
   data: function(){
     return {
-      meals: []
+      meals: [],
+      search: ""
     };
   },
   created: function(){
@@ -207,7 +197,13 @@ var MealIndex = {
     }.bind(this));
   },
   methods: {},
-  computed: {}
+  computed: {
+    filteredMeals: function(){
+      return this.meals.filter((meal) =>{
+        return meal.meal_category.match(this.search);
+      });
+    }
+  }
 };
 
 var MealsShowPage = {

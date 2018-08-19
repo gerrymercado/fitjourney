@@ -38,13 +38,16 @@
 <!-- HTML5 and CSS3-in older browsers-->
 <script src="js/modernizr.custom.17475.js"></script>
 
-</head>
-<body>
-
-  <!-- Vue Scripts -->
+ <!-- Vue Scripts -->
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.js"></script>
+<script src="index.js" defer></script> 
+
+
+</head>
+<body>
+
 
 <div id="vue-app">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -96,18 +99,18 @@
   </div>
 </div>
 
+
 <!-- FLEXSLIDER -->  
-<script src="js/jquery.flexslider.js"></script> 
-       
-<!-- <script type="text/javascript">
-      /* <![CDATA[ */
-      //   $(window).load(function() {
-      //   $('.flexslider').flexslider({
-      //     animation: "fade"
-      //   });
-      // });
-        /* ]]> */
-</script>  -->
+<script defer src="js/jquery.flexslider.js"></script> 
+ <script type="text/javascript">
+/* <![CDATA[ */
+  $(window).load(function() {
+  $('.flexslider').flexslider({
+    animation: "fade"
+  });
+});
+  /* ]]> */
+</script> 
 
 
 <!-- MENU JS -->    
@@ -122,13 +125,13 @@
 <script src="assets/validate.js"></script> 
 <script src="js/functions.js"></script>
 
+
+
 <!-- FANCYBOX -->
 <script  src="js/fancybox/source/jquery.fancybox.pack.js?v=2.1.4" type="text/javascript"></script> 
 <script src="js/fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.5" type="text/javascript"></script> 
 <script src="js/fancy_func.js" type="text/javascript"></script> 
 
-<!-- Custom JS -->
-<script src="index.js" defer></script> 
 
 </body>
 </html>
@@ -260,8 +263,9 @@
 
 <template id="meal-card">
   <div class="vue-component">
+    <input type = "text" v-model="search" placeholder="Search Meal Category" />
     <div class="row">
-      <div v-for="meal in meals" class="card col-md-4">
+      <div v-for="meal in filteredMeals" class="card col-md-4">
         <div class="card-body">
           <h5 class="card-name">{{ meal.name }}</h5>
           <p class="card-text">Meal Category: {{ meal.meal_category }}</p>

@@ -1,6 +1,6 @@
 class Api::UsersController < ApplicationController
 
-  # before_action :authenticate_user
+  before_action :authenticate_user
 
   def show
     if current_user
