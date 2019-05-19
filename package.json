@@ -1,5 +1,7 @@
 {
   "name": "FitJourney",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "hooper": "^0.1.3"
+  }
 }
