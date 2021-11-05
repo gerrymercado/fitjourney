@@ -97,16 +97,16 @@ var UsersShowPage = {
     };
   },
   created: function() {
-    axios.get("/api/profile/").then(
-      function(response) {
+    axios.get("/api/profile/".then(
+      function(response){
         this.user = response.data;
         console.log(this.user);
-      }.bind(this)
-    );
+      }.bind(this));
   },
   methods: {},
   computed: {}
 };
+
 
 // var Profile = {
 //   template:"#users-show-page",

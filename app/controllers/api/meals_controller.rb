@@ -1,9 +1,11 @@
 class Api::MealsController < ApplicationController
 
-  before_action :authenticate_user
+  # before_action :authenticate_user
+
+  skip_before_action :verify_authenticity_token
 
   def index
-    @meals = current_user.meals 
+    @meals = current_user.meals
 
     meal_category_search = params[:search]
 
