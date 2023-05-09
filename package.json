@@ -2,7 +2,8 @@
   "name": "FitJourney",
   "private": true,
   "dependencies": {
-    "hooper": "^0.1.3"
+    "hooper": "^0.1.3",
+    "vue-router": "^4.1.6"
   },
   "scripts": {
     "start": "some command to be run",
