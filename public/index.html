@@ -39,8 +39,8 @@
 <script src="js/modernizr.custom.17475.js"></script>
 
  <!-- Vue Scripts -->
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
-<script src="https://unpkg.com/vue-router@4.0.15/dist/vue-router.global.js"></script>
+ <script src="https://unpkg.com/vue@3"></script>
+ <script src="https://unpkg.com/vue-router@4"></script>
 <script src="https://unpkg.com/axios/dist/axios.js"></script>
 <script src="index.js" defer></script> 
 
@@ -79,7 +79,7 @@
   
 
 
-<div id="vue-app">
+<div id="app">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#"></a>
       <button class="navbar-toggler" type="button"data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -89,19 +89,19 @@
       <!-- <ul class="navbar-nav"> -->
       <ul id="main-nav" class="sf-menu" >
         <li class="nav-item active">
-          <a class="nav-link" href="/#/">Home<span class="sr-only">(current)</span></a>
+          <router-link to="/">Home</router-link><span class="sr-only">(current)</span>
         </li>
         <li class="nav-item" v-if="isLoggedIn()" >
-          <a class="nav-link" href="/#/profile">My Profile</a>
+          <router-link to="/profile">My Profile</router-link>
         </li>
         <li class="nav-item" v-if="isLoggedIn()" >
-          <a class="nav-link" href="/#/meals">Meals</a>
+          <router-link to="/meals">Meals</router-link>
         </li>
         <li class="nav-item" v-if="isLoggedIn()" >
-          <a class="nav-link" href="/#/meals/create">Log A Meal</a>
+          <router-link to="/meals/create">Log A Meal</router-link>
         </li>
         <li class="nav-item" v-if="isLoggedIn()" >
-          <a href="#">Calorie calculators</a>
+          <router-link to="#">Calorie calculators</router-link>
             <ul>
               <li><a href="/#/daily-calorie-calculator">Daily calories</a></li>
               <li><a href="/#/calories-burned-heart-rate">Calories burned by heart rate</a></li>
@@ -109,24 +109,20 @@
               <li><a href="/#/bmi-calculator">BMI calculator</a></li>
             </ul>
         </li>
-        <li class="nav-item" v-if="!isLoggedIn()" >
-          <a class="nav-link" href="/#/login">Login</a>
+        <li class="nav-item" v-if="!isLoggedIn()"  >
+          <router-link to="/login">Login</router-link>
         </li>
-        <li class="nav-item" v-if="isLoggedIn()" >
-          <a class="nav-link" href="/#/logout">Logout</a>
+        <li class="nav-item" v-if="isLoggedIn()"  >
+          <router-link to="/logout">Logout</router-link>
         </li>
         <li class="nav-item" v-if="!isLoggedIn()" >
-          <a class="nav-link" href="/#/signup">Signup</a>
+          <router-link to="/signup">Signup</router-link>
         </li>
       </ul>
     </div>
   </nav>
   <br>
-  <div class="container">
-    <router-view :key="$route.fullPath">
-       <!-- template goes in here -->
-    </router-view>
-  </div>
+  <router-view></router-view>
 </div>
 
 </body>
@@ -135,7 +131,9 @@
 
 <template id="home-page">
   <div class="vue-component">
+    <div class="container">
     <h1>{{ message }}</h1>
+    </div>
     <br>
     <div class="container">
       <div class="row">
@@ -162,7 +160,8 @@
 
 <template id="login-page">
   <div class ="vue-component">
-  
+    <div class="container">
+    
     <h1>Login</h1>
     <ul>
       <li class="text-danger" v-for="error in errors">{{ error }}</li>
@@ -176,6 +175,7 @@
       <input type="password" class="form-control" v-model="password">
     </div>
     <button class="btn-primary" v-on:click="submit()">Submit</button>
+    </div>
   </div>
     
 </template>
@@ -214,24 +214,28 @@
   <div class="vue-component">
      <p class="col-md-3"><img src="https://media-exp1.licdn.com/dms/image/C5603AQGUGeECJXBwvw/profile-displayphoto-shrink_100_100/0/1611802895560?e=1641427200&v=beta&t=yeAWi0FiGFK4u15yFoFBOrTLQgJI3dyBYWTB-m5zOTQ" alt="" class="img-circle style img-responsive"></p>
     <br>
+    <div class="container">
      <h4>User Id: {{ user.id }}</h4>
     <h4>Name: {{ user.name }}</h4>
     <h4>Email: {{ user.email }}</h4>
     <h4>Weight: {{ user.weight }} lbs</h4>
     <h4>Goals: {{ user.goals }}</h4>
     <h4>Favorite Activities: {{ user.favorite_activities }}</h4>
+    </div>
     <br>
     <br>
+    <div class="container">
     <a v-bind:href="'/#/profile/' + user.id + '/delete'" class="button_small">Delete Profile</a>
     <a v-bind:href="'/#/profile/' + user.id + '/edit'" class="button_small">Edit Profile</a>
     <a class="button_small" href=" /#/meals/">View Meals</a>
     <a class="button_small" href="/#/meals/create">Log A Meal</a>
   </div>
+  </div>
 </template>
 
 <template id="profile-edit-page">
   <div class="vue-component">
-
+    <div class="container">
       <h2>Edit Profile</h2>
       <ul>
         <li class="text-danger" v-for="error in errors">{{ error }}</li>
@@ -258,12 +262,15 @@
       </div>
       <a class="button_small" href=" /#/profile/">Cancel</a>
       <button class="button_small" v-on:click="submit()">Submit</button>
+    </div>
   </div>
 </template>
 
 <template id="meal-card">
   <div class="vue-component">
-    <center><input type = "text" v-model="search" placeholder="Search Meal Category" /></center>
+    <div class="container">
+    <input type = "text" v-model="search" placeholder="Search Meal Category" />
+  </div>
     <br>
     <div class="row">
       <div v-for="meal in filteredMeals" class="card col-md-4">
@@ -276,8 +283,8 @@
       </div>
     </div>
     <br>
-      <div>
-        <center><a v-bind:href=" '/#/meals/' " class="button_small">View More Meals</a></center>
+      <div class="container">
+        <a v-bind:href=" '/#/meals/' " class="button_small">View More Meals</a>
       </div> 
   </div>
 </template>

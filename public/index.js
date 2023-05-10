@@ -1,5 +1,6 @@
 /* global Vue, VueRouter, axios */
 
+
 var HomePage = {
   template: "#home-page",
   data: function() {
@@ -97,11 +98,12 @@ var UsersShowPage = {
     };
   },
   created: function() {
-    axios.get("/api/profile/".then(
+    axios.get("/api/profile/")
+    .then(
       function(response){
         this.user = response.data;
         console.log(this.user);
-      }.bind(this));
+      }.bind(this))
   },
   methods: {},
   computed: {}
@@ -309,7 +311,8 @@ var BmiCalculator = {
   }
 };
 
-var router = new VueRouter({
+const router = VueRouter.createRouter({
+  history: VueRouter.createWebHashHistory(),
   routes: [
     { path: "/", component: HomePage },
     { path: "/login", component: LoginPage },
@@ -321,7 +324,6 @@ var router = new VueRouter({
     { path: "/meals", component: MealIndex },
     { path: "/meals/create", component: NewMeal },
     { path: "/meals/:id", component: MealsShowPage },
-    { path: "/logout", component: LogoutPage },
     { path: "/calories-burned-calculator", component: CaloriesBurned },
     { path: "/daily-calorie-calculator", component: DailyCalories },
     { path: "/calories-burned-heart-rate", component: HeartRate },
@@ -332,9 +334,7 @@ var router = new VueRouter({
   }
 });
 
-var app = new Vue({
-  el: "#vue-app",
-  router: router,
+const app = Vue.createApp({ 
   created: function() {
     var jwt = localStorage.getItem("jwt");
     if (jwt) {
@@ -343,10 +343,15 @@ var app = new Vue({
   },
   methods: {
     isLoggedIn: function() {
-      if (localStorage.getItem("jwt")) {
+      if(localStorage.getItem("jwt")) {
         return true;
       }
       return false;
     }
   }
-});
+})
+  app.use(router)
+  app.mount('#app')
+
+
+
