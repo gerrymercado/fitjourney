@@ -89,10 +89,10 @@
       <!-- <ul class="navbar-nav"> -->
       <ul id="main-nav" class="sf-menu" >
         <li class="nav-item active">
-          <router-link to="/">Home</router-link><span class="sr-only">(current)</span>
+          <router-link to="/">Home</router-link>
         </li>
         <li class="nav-item" v-if="isLoggedIn()" >
-          <router-link to="/profile">My Profile</router-link>
+          <router-link to="/profile/">My Profile</router-link>
         </li>
         <li class="nav-item" v-if="isLoggedIn()" >
           <router-link to="/meals">Meals</router-link>
@@ -212,10 +212,9 @@
 
 <template id = "users-show-page">
   <div class="vue-component">
-     <p class="col-md-3"><img src="https://media-exp1.licdn.com/dms/image/C5603AQGUGeECJXBwvw/profile-displayphoto-shrink_100_100/0/1611802895560?e=1641427200&v=beta&t=yeAWi0FiGFK4u15yFoFBOrTLQgJI3dyBYWTB-m5zOTQ" alt="" class="img-circle style img-responsive"></p>
+     <!-- <p class="col-md-3"><img src="https://media-exp1.licdn.com/dms/image/C5603AQGUGeECJXBwvw/profile-displayphoto-shrink_100_100/0/1611802895560?e=1641427200&v=beta&t=yeAWi0FiGFK4u15yFoFBOrTLQgJI3dyBYWTB-m5zOTQ" alt="" class="img-circle style img-responsive"></p> -->
     <br>
     <div class="container">
-     <h4>User Id: {{ user.id }}</h4>
     <h4>Name: {{ user.name }}</h4>
     <h4>Email: {{ user.email }}</h4>
     <h4>Weight: {{ user.weight }} lbs</h4>
@@ -274,6 +273,7 @@
     <br>
     <div class="row">
       <div v-for="meal in filteredMeals" class="card col-md-4">
+        <div class="container">
         <div class="card-body">
           <h5 class="card-name">{{ meal.name }}</h5>
           <p class="card-text">Meal Category: {{ meal.meal_category }}</p>
@@ -284,8 +284,10 @@
     </div>
     <br>
       <div class="container">
+        <br>
         <a v-bind:href=" '/#/meals/' " class="button_small">View More Meals</a>
       </div> 
+    </div>
   </div>
 </template>
 

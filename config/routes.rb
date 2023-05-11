@@ -19,7 +19,7 @@ post 'user_token' => 'user_token#create'
     delete "/reports/:id" => "reports#destroy"
 
     # get "/users/:id" => "users#show"
-    get "/profile" => "users#show"
+    get "/profile/:id" => "users#show"
     post "/users" => "users#create"
     get "/profile/:id" => "users#edit"
     patch "/profile/:id" => "users#update"

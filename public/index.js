@@ -33,7 +33,7 @@ var LoginPage = {
             "Bearer" + response.data.jwt;
           localStorage.setItem("jwt", response.data.jwt);
           localStorage.setItem("user_id", response.data.user.id);
-          router.push("/");
+          router.push("/profile/");
         })
         .catch(
           function(error) {
@@ -52,7 +52,7 @@ var LogoutPage = {
     axios.defaults.headers.common["Authorization"] = undefined;
     localStorage.removeItem("jwt");
     localStorage.removeItem("user_id");
-    router.push("/");
+    router.push("/login");
   }
 };
 
@@ -98,7 +98,7 @@ var UsersShowPage = {
     };
   },
   created: function() {
-    axios.get("/api/profile/")
+    axios.get("api/profile/:id")
     .then(
       function(response){
         this.user = response.data;
