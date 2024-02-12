@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: FitJourney_production
-  username: FitJourney
+  username: postgres
   password: <%= ENV['FITJOURNEY_DATABASE_PASSWORD'] %>
